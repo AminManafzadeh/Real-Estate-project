@@ -11,6 +11,10 @@ module.exports = {
       colors: {
         mainBlue: "#304ffe",
         mainWhite: "#fff",
+        gray: "#808080",
+      },
+      boxShadow: {
+        custom: "0px 4px 15px #304ffe4a",
       },
     },
   },

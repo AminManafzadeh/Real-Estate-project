@@ -28,3 +28,13 @@ input,
 textarea {
   font-family: inherit;
 }
+
+.label {
+  @apply text-mainBlue font-normal;
+}
+.input {
+  @apply border border-dashed border-mainBlue rounded-[5px] p-[10px] h-10;
+}
+.button {
+  @apply border-none bg-mainBlue text-mainWhite text-xl font-normal rounded-[5px] transition-all ease-in duration-100 cursor-pointer py-2 px-0;
+}
