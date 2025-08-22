@@ -12,6 +12,8 @@ module.exports = {
         mainBlue: "#304ffe",
         mainWhite: "#fff",
         gray: "#808080",
+        silver: "#c0c0c0",
+        red: "#db0505",
       },
       boxShadow: {
         custom: "0px 4px 15px #304ffe4a",
