@@ -29,6 +29,38 @@ textarea {
   font-family: inherit;
 }
 
+.card {
+  display: flex;
+  margin: 10px 0;
+}
+.card input {
+  width: 300px;
+  border: 1px #304ffe dashed;
+  color: grey;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1rem;
+  height: 30px;
+  margin-left: 10px;
+}
+
+.card input:focus {
+  border: 1px #304ffe solid;
+  outline: none;
+}
+
+.card button {
+  margin: 0;
+  color: #db0505;
+  background-color: #fff;
+  border: 1px #db0505 solid;
+  display: flex;
+  align-items: center;
+  line-height: 10px;
+  border-radius: 5px;
+  padding: 4px 8px;
+}
+
 .label {
   @apply text-mainBlue font-normal;
 }

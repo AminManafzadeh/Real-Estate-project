@@ -1,9 +1,12 @@
 "use client";
 
+import CutomDatePicker from "@/module/CutomDatePicker";
+import Loading from "@/module/Loading";
 import RadioList from "@/module/RadioList";
 import TextInput from "@/module/TextInput";
 import TextList from "@/module/TextList";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 function AddProfilePage() {
   const [profileData, setProfileData] = useState({
@@ -18,9 +21,23 @@ function AddProfilePage() {
     rules: [],
     amenities: [],
   });
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = () => {
-    console.log(profileData);
+  const handleSubmit = async () => {
+    setLoading(true);
+    const res = await fetch("/api/profile", {
+      method: "POST",
+      body: JSON.stringify(profileData),
+      headers: { "Contetnt-Type": "application/json" },
+    });
+
+    const data = await res.json();
+    setLoading(false);
+    if (data.error) {
+      toast.error(data?.error);
+    } else {
+      toast.success(data?.message);
+    }
   };
 
   return (
@@ -79,12 +96,20 @@ function AddProfilePage() {
         setProfileData={setProfileData}
         type="rules"
       />
-      <button
-        onClick={handleSubmit}
-        className="border-none bg-mainBlue text-mainWhite rounded-[5px] transition-all ease-in duration-100 cursor-pointer p-[10px] hover:opacity-90"
-      >
-        ثبت آگهی
-      </button>
+      <CutomDatePicker
+        profileData={profileData}
+        setProfileData={setProfileData}
+      />
+      {loading ? (
+        <Loading loading={loading} size="40" />
+      ) : (
+        <button
+          onClick={handleSubmit}
+          className="border-none bg-mainBlue text-mainWhite rounded-[5px] transition-all ease-in duration-100 cursor-pointer p-[10px] hover:opacity-90"
+        >
+          ثبت آگهی
+        </button>
+      )}
     </div>
   );
 }

@@ -6,12 +6,32 @@ function TextList({ title, profileData, setProfileData, type }) {
     setProfileData({ ...profileData, [type]: [...profileData[type], ""] });
   };
 
+  const handleChange = (e, index) => {
+    const list = [...profileData[type]];
+    list[index] = e.target.value;
+    setProfileData({ ...profileData, [type]: list });
+  };
+
+  const handleDelete = (index) => {
+    const list = [...profileData[type]];
+    list.splice(index, 1);
+    setProfileData({ ...profileData, [type]: list });
+  };
+
   return (
     <div className="mb-10">
       <p className="text-lg mb-[5px]">{title}</p>
       {profileData[type]?.map((i, index) => (
-        <div key={index} className="flex my-[10px]">
-          <input type="text" className="inputArea" />
+        <div key={index} className="card">
+          <input
+            type="text"
+            value={i}
+            onChange={(e) => handleChange(e, index)}
+          />
+          <button onClick={() => handleDelete(index)}>
+            حذف
+            <AiOutlineDelete />
+          </button>
         </div>
       ))}
       <button

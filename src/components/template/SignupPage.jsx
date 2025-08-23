@@ -1,10 +1,10 @@
 "use client";
 
+import Loading from "@/module/Loading";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { ClipLoader } from "react-spinners";
 
 function SignupPage() {
   const [email, setEmail] = useState("");
@@ -75,12 +75,7 @@ function SignupPage() {
         />
         {loading ? (
           <>
-            <ClipLoader
-              color="#304ffe"
-              loading={loading}
-              size={25}
-              cssOverride={{ margin: "auto" }}
-            />
+            <Loading loading={loading} size="25" />
           </>
         ) : (
           <button

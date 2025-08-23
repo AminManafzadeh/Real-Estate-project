@@ -6,6 +6,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { ClipLoader } from "react-spinners";
 import { signIn } from "next-auth/react";
+import Loading from "@/module/Loading";
 
 function SigninPage() {
   const [email, setEmail] = useState("");
@@ -57,12 +58,7 @@ function SigninPage() {
         />
         {loading ? (
           <>
-            <ClipLoader
-              color="#304ffe"
-              loading={loading}
-              size={25}
-              cssOverride={{ margin: "auto" }}
-            />
+            <Loading loading={loading} size="25" />
           </>
         ) : (
           <button
