@@ -5,10 +5,11 @@ import Loading from "@/module/Loading";
 import RadioList from "@/module/RadioList";
 import TextInput from "@/module/TextInput";
 import TextList from "@/module/TextList";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-function AddProfilePage() {
+function AddProfilePage({ data }) {
   const [profileData, setProfileData] = useState({
     title: "",
     description: "",
@@ -22,6 +23,11 @@ function AddProfilePage() {
     amenities: [],
   });
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (data) setProfileData(data);
+  }, []);
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -37,13 +43,32 @@ function AddProfilePage() {
       toast.error(data?.error);
     } else {
       toast.success(data?.message);
+      router.refresh();
+    }
+  };
+
+  const handleEdit = async () => {
+    setLoading(true);
+    const res = await fetch("/api/profile", {
+      method: "PATCH",
+      body: JSON.stringify(profileData),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    const data = await res.json();
+    setLoading(false);
+    if (data?.error) {
+      toast.error(data?.error);
+    } else {
+      toast.success(data?.message);
+      router.refresh();
     }
   };
 
   return (
     <div className="flex flex-col mb-[150px]">
       <h3 className="text-2xl font-normal mb-20 w-full bg-[#304ffe18] text-mainBlue rounded-[10px] py-[10px] px-[15px]">
-        ثبت آگهی
+        {data ? "ویرایش آگهی" : "ثبت آگهی"}
       </h3>
       <TextInput
         title="عنوان آگهی"
@@ -102,6 +127,13 @@ function AddProfilePage() {
       />
       {loading ? (
         <Loading loading={loading} size="40" />
+      ) : data ? (
+        <button
+          onClick={handleEdit}
+          className="border-none bg-mainBlue text-mainWhite rounded-[5px] transition-all ease-in duration-100 cursor-pointer p-[10px] hover:opacity-90"
+        >
+          ویرایش آگهی
+        </button>
       ) : (
         <button
           onClick={handleSubmit}
