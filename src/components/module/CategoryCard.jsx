@@ -4,7 +4,7 @@ import Link from "next/link";
 function CategoryCard({ name, title }) {
   return (
     <div className="shadow-custom rounded-[15px] overflow-hidden p-[10px] transition-all ease-in duration-100 my-[10px] hover:-rotate-6">
-      <Link href="/">
+      <Link href={`/buy-residential?category=${name}`}>
         <Image
           src={`/images/${name}.png`}
           alt={title}

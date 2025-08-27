@@ -8,7 +8,7 @@ import englishToPersianNumber from "@/utils/englishToPersian";
 import Link from "next/link";
 
 function Card({ data }) {
-  const { category, title, location, price } = data;
+  const { category, title, location, price, _id } = data;
 
   const icons = {
     villa: (
@@ -38,7 +38,7 @@ function Card({ data }) {
       </span>
       <Link
         className="flex items-center justify-between mt-5 text-base font-normal text-mainBlue"
-        href="/"
+        href={`/buy-residential/${_id}`}
       >
         مشاهده آگهی
         <BiLeftArrowAlt className="text-2xl" />
