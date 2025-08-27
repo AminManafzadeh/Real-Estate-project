@@ -1,19 +1,9 @@
 import CategoryCard from "@/module/CategoryCard";
 import { FiCircle } from "react-icons/fi";
 import { FaCity } from "react-icons/fa6";
+import { services, cities } from "@/constants/strings";
 
 function HomePage() {
-  const services = ["خرید", "فروش", "رهن", "اجاره"];
-  const cities = [
-    "تبریز",
-    "تهران",
-    "مشهد",
-    "رشت",
-    "اصفهان",
-    "کرمانشاه",
-    "قشم",
-    "اردبیل",
-  ];
   const categoryItems = [
     { title: "خانه ویلایی", name: "villa", id: 1 },
     { title: "آپارتمان", name: "apartment", id: 2 },
@@ -25,7 +15,7 @@ function HomePage() {
     <div>
       <div className="flex flex-col justify-center items-center rounded-[10px] p-5 my-[100px]">
         <div className="w-full text-center text-mainBlue">
-          <h1 className="font-bold text-2xl md:text-4xl md:text-5xl mb-[30px]">
+          <h1 className="font-bold text-2xl md:text-4xl mb-[30px]">
             سامانه خرید و اجاره ملک
           </h1>
           <ul className="flex justify-center list-none flex-wrap">

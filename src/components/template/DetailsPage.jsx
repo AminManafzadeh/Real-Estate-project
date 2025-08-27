@@ -2,15 +2,13 @@ import { SiHomebridge } from "react-icons/si";
 import { AiOutlinePhone } from "react-icons/ai";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { BiCalendarCheck } from "react-icons/bi";
-import { RiHome3Line } from "react-icons/ri";
-import { MdApartment } from "react-icons/md";
-import { BiStore } from "react-icons/bi";
-import { GiOfficeChair } from "react-icons/gi";
 import ItemList from "@/module/ItemList";
 import Title from "@/module/Title";
 import { e2p } from "@/utils/replaceNumber";
 import englishToPersianNumber from "@/utils/englishToPersian";
 import ShareButton from "@/module/ShareButton";
+import { icons } from "@/constants/icons";
+import { categories } from "@/constants/strings";
 
 function DetailsPage({ data }) {
   const {
@@ -25,20 +23,6 @@ function DetailsPage({ data }) {
     category,
     constructionDate,
   } = data || {};
-
-  const icons = {
-    villa: <RiHome3Line />,
-    apartment: <MdApartment />,
-    store: <BiStore />,
-    office: <GiOfficeChair />,
-  };
-
-  const categories = {
-    apartment: "آپارتمان",
-    villa: "ویلا",
-    store: "مغازه",
-    office: "دفتر",
-  };
 
   console.log(data);
   return (
