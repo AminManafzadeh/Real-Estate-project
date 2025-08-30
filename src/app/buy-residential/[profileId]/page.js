@@ -1,4 +1,6 @@
+import Profile from "@/models/Profile";
 import DetailsPage from "@/template/DetailsPage";
+import connectDB from "@/utils/connectDB";
 
 export async function generateStaticParams() {
   const res = await fetch(`${process.env.NEXTAUTH_URI}/api/profile`, {
@@ -33,4 +35,13 @@ export default async function ProfileDetail({ params }) {
   const profile = await res.json();
 
   return <DetailsPage data={profile} />;
+}
+
+export async function generateMetedata({ params }) {
+  const profileId = await params;
+
+  await connectDB();
+  const profile = await Profile.findOne({ _id: profileId });
+
+  return { title: profile.title, description: profile.description };
 }
